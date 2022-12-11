@@ -1,0 +1,131 @@
+﻿<Window x:Class="ComputerClub.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ComputerClub"
+        mc:Ignorable="d"
+        Title="Компьютерный клуб" Height="450" Width="800">
+    <Grid>
+        <TabControl x:Name="MainWindowTabControl">
+            <TabItem Header="Компьютеры">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="AddComputerButton" Width="100" Height="30" Grid.Row="0" Grid.Column="0" Command="{Binding AddComputer}">Добавить</Button>
+                    <Button x:Name="ChangeComputerButton" Width="100" Height="30" Grid.Row="0" Grid.Column="1" Command="{Binding EditComputer}" CommandParameter="{Binding ElementName=ComputersGrid, Path=SelectedItem}">Изменить</Button>
+                    <Button x:Name="DeleteComputerButton" Width="100" Height="30" Grid.Row="0" Grid.Column="2" Command="{Binding DeleteComputer}" CommandParameter="{Binding ElementName=ComputersGrid, Path=SelectedItem}">Удалить</Button>
+                    <DataGrid x:Name="ComputersGrid" Grid.Row="1" Grid.ColumnSpan="6" ItemsSource="{Binding Computers}" SelectedItem="{Binding SelectedComputer}" IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single" ColumnWidth="*">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID Компьютера" Binding="{Binding Path=ComputerID}" />
+                            <DataGridTextColumn Header="Статус" Binding="{Binding Path=ComputerStatus.ComputerStatusName}" />
+                            <DataGridTextColumn Header="Имя Компьютера" Binding="{Binding Path=ComputerName}" />
+                            <DataGridTextColumn Header="Описание компьютера" Binding="{Binding Path=ComputerDescription}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Статусы компьютеров">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="AddComputerStatusButton" Width="100" Height="30" Grid.Row="0" Grid.Column="0" Command="{Binding AddComputerStatus}">Добавить</Button>
+                    <Button x:Name="ChangeComputerStatusButton" Width="100" Height="30" Grid.Row="0" Grid.Column="1" Command="{Binding EditComputerStatus}" CommandParameter="{Binding ElementName=ComputersStatusesGrid, Path=SelectedItem}">Изменить</Button>
+                    <Button x:Name="DeleteComputerStatusButton" Width="100" Height="30" Grid.Row="0" Grid.Column="2" Command="{Binding DeleteComputerStatus}" CommandParameter="{Binding ElementName=ComputersStatusesGrid, Path=SelectedItem}">Удалить</Button>
+                    <DataGrid x:Name="ComputersStatusesGrid" Grid.Row="1" Grid.ColumnSpan="6" ItemsSource="{Binding ComputerStatuses}" SelectedItem="{Binding SelectedComputerStatus}" IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single" ColumnWidth="*">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID Статуса" Binding="{Binding Path=StatusID}" />
+                            <DataGridTextColumn Header="Описание статуса" Binding="{Binding Path=ComputerStatusName}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Посетители">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="AddVisitorButton" Width="100" Height="30" Grid.Row="0" Grid.Column="0" Command="{Binding AddVisitor}">Добавить</Button>
+                    <Button x:Name="ChangeVisitorButton" Width="100" Height="30" Grid.Row="0" Grid.Column="1" Command="{Binding EditVisitor}" CommandParameter="{Binding ElementName=VisitorsGrid, Path=SelectedItem}">Изменить</Button>
+                    <Button x:Name="DeleteVisitorStatusButton" Width="100" Height="30" Grid.Row="0" Grid.Column="2" Command="{Binding DeleteComputerStatus}" CommandParameter="{Binding ElementName=VisitorsGrid, Path=SelectedItem}">Удалить</Button>
+
+                    <DataGrid x:Name="VisitorsGrid" Grid.Row="1" Grid.ColumnSpan="6" ItemsSource="{Binding Visitors}" SelectedItem="{Binding SelectedVisitor}" IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single" ColumnWidth="*">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID посетителя" Binding="{Binding Path=VisitorID}" />
+                            <DataGridTextColumn Header="Имя" Binding="{Binding Path=FirstName}" />
+                            <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=SurName}" />
+                            <DataGridTextColumn Header="Отчество" Binding="{Binding Path=Patronymic}" />
+                            <DataGridTextColumn Header="Документ" Binding="{Binding Path=IdentityDocument}" />
+                            <DataGridTextColumn Header="Адрес" Binding="{Binding Path=Adress}" />
+                            <DataGridTextColumn Header="Телефон" Binding="{Binding Path=Phone}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Посещения">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="AddVisitButton" Width="100" Height="30" Grid.Row="0" Grid.Column="0" Command="{Binding AddVisit}">Добавить</Button>
+                    <Button x:Name="ChangeVisitButton" Width="100" Height="30" Grid.Row="0" Grid.Column="1" Command="{Binding EditVisit}" CommandParameter="{Binding ElementName=VisitsGrid, Path=SelectedItem}">Изменить</Button>
+                    <Button x:Name="DeleteVisitStatusButton" Width="100" Height="30" Grid.Row="0" Grid.Column="2" Command="{Binding DeleteVisit}" CommandParameter="{Binding ElementName=VisitsGrid, Path=SelectedItem}">Удалить</Button>
+
+                    <DataGrid x:Name="VisitsGrid" Grid.Row="1" Grid.ColumnSpan="6" ItemsSource="{Binding Visits}" SelectedItem="{Binding SelectedVisit}" IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single" ColumnWidth="*">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID посещения" Binding="{Binding Path=VisitID}" />
+                            <DataGridTextColumn Header="Посетитель" Binding="{Binding Path=Visitor.SurName}" />
+                            <DataGridTextColumn Header="Компьютер" Binding="{Binding Path=Computer.ComputerName}" />
+                            <DataGridTextColumn Header="Дата" Binding="{Binding Path=VisitDate}" />
+                            <DataGridTextColumn Header="Длительность" Binding="{Binding Path=VisitLenght}" />
+                            <DataGridTextColumn Header="Плата" Binding="{Binding Path=Pay}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
